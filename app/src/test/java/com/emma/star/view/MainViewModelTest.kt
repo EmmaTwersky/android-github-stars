@@ -53,8 +53,8 @@ class MainViewModelTest {
 
     @Test
     fun testSearchRepos() {
-        val repo : Repo = mock()
-        whenever(service.getRepos("test")) doReturn(arrayListOf<Any>(repo))
+//        val repo : Repo = mock()
+//        whenever(service.getRepos("test")) doReturn(arrayListOf<Any>(repo))
 //        viewModel.searchRepos("test")
 //
 //        assertEquals("fruit", viewModel.repos.value?.get(0)?.name)
