@@ -6,7 +6,6 @@ import com.emma.star.view.MainViewModel
 import com.emma.star.network.RepoRepository
 import javax.inject.Inject
 
-
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory @Inject constructor(private val repoRepository: RepoRepository) : ViewModelProvider.Factory {
 

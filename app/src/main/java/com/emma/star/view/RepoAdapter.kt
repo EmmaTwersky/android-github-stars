@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.emma.star.R
 import com.emma.star.databinding.RepoItemViewBinding
 import com.emma.star.model.Repo
-import com.squareup.picasso.Picasso
-
 
 class RepoAdapter(private var repoList: ArrayList<Repo?>) :
     RecyclerView.Adapter<RepoViewHolder>() {
@@ -46,11 +45,12 @@ class RepoAdapter(private var repoList: ArrayList<Repo?>) :
             customTabsIntent.launchUrl(context, Uri.parse(repo?.url))
         }
 
-        Picasso.get()
-            .load(Uri.parse(repo?.owner?.avatarUrl)) // internet path
-            .placeholder(R.mipmap.star)  // preload
-            .error(R.mipmap.star)        // load error
-            .into(holder.binding.repoOwnerImage);
+        Glide.with(context)
+            .load(Uri.parse(repo?.owner?.avatarUrl))
+            .centerCrop()
+            .placeholder(R.drawable.star)
+            .error(R.drawable.star)
+            .into(holder.binding.repoOwnerImage)
     }
 
     override fun getItemCount() = repoList.size

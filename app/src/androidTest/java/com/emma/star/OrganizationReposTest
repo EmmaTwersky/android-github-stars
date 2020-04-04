@@ -17,7 +17,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class OrganizationReposTest {
@@ -64,11 +63,12 @@ class OrganizationReposTest {
         onView(withId(R.id.search_button)).perform(click())
 
         // Navigate to Chrome tab
-//        onView(withId(R.id.repo_name)).perform(click())
-        onData(anything()).inAdapterView(withId(R.id.repos_recycler_view))
-            .atPosition(0).perform(click());
+        onData(anything())
+            .inAdapterView(withId(R.id.repos_recycler_view))
+            .atPosition(0)
+            .perform(click())
 
-        Espresso.pressBack();
+        Espresso.pressBack()
 
         // Check that we navigate back to a full recycler view
         onView(withId(R.id.repos_recycler_view)).check(RecyclerViewItemCountAssertion(30))

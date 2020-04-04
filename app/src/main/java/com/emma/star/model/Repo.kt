@@ -2,7 +2,6 @@ package com.emma.star.model
 
 import com.google.gson.annotations.SerializedName
 
-
 data class Repo(
     @SerializedName("name") val name: String,
     @SerializedName("owner") val owner: Owner,

@@ -4,9 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.emma.star.model.Repo
 import com.emma.star.network.RepoRepository
-
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class MainViewModel(private val repoRepository: RepoRepository) : ViewModel() {
 
@@ -20,17 +22,21 @@ class MainViewModel(private val repoRepository: RepoRepository) : ViewModel() {
 
     fun searchRepos(organization: String) {
         _searchStatus.value = true
-        repoRepository.getRepos(
-            organization,
-            { repos ->
-                repos.sortByDescending { it?.stars}
-                _repos.value = repos
-                _searchStatus.value = false
-            },
-            { t ->
-                Log.e("MainActivity", "onFailure: ", t)
-                _searchStatus.value = false
+
+        viewModelScope.launch {
+            try {
+                _repos.value?.clear()
+                val searchResults = repoRepository.getRepos(organization)
+                handleReposSorting(searchResults)
+            } catch (e: Exception) {
+                Log.e("MainViewModel", "Exception: ", e)
             }
-        )
+        }
+        _searchStatus.value = false
+    }
+
+    private fun handleReposSorting(searchResults: ArrayList<Repo?>) {
+        searchResults.sortByDescending { it?.stars }
+        _repos.value = searchResults
     }
 }

@@ -1,17 +1,13 @@
 package com.emma.star.view
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.emma.star.model.Repo
 import com.emma.star.network.GithubService
 import com.emma.star.network.RepoRepositoryImpl
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
-import junit.framework.Assert.assertEquals
 import okhttp3.mockwebserver.MockWebServer
 import org.hamcrest.CoreMatchers.notNullValue
 import org.hamcrest.CoreMatchers.nullValue
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -45,18 +41,14 @@ class MainViewModelTest {
         viewModel = MainViewModel(repository)
     }
 
-    @Test
-    fun testInstanceVariables() {
-        assertThat(viewModel.repos.value, nullValue())
-        assertThat(viewModel.searchStatus, notNullValue())
+    @After
+    fun tearDown() {
+        mockWebServer.shutdown()
     }
 
     @Test
-    fun testSearchRepos() {
-//        val repo : Repo = mock()
-//        whenever(service.getRepos("test")) doReturn(arrayListOf<Any>(repo))
-//        viewModel.searchRepos("test")
-//
-//        assertEquals("fruit", viewModel.repos.value?.get(0)?.name)
+    fun `test instance variables`() {
+        assertThat(viewModel.repos.value, nullValue())
+        assertThat(viewModel.searchStatus, notNullValue())
     }
 }

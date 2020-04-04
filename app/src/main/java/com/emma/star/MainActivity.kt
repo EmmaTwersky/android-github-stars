@@ -15,7 +15,6 @@ import com.emma.star.view.MainViewModel
 import com.emma.star.view.RepoAdapter
 import javax.inject.Inject
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var repoRecyclerView: RecyclerView
@@ -35,12 +34,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         component.inject(this)
 
+        setUpReposRecyclerView()
+        setUpViewModel()
+    }
+
+    private fun setUpReposRecyclerView() {
         repoViewManager = LinearLayoutManager(this)
         repoRecyclerView = binding.reposRecyclerView.apply {
             setHasFixedSize(true)
             layoutManager = repoViewManager
         }
+    }
 
+    private fun setUpViewModel() {
         viewModel = ViewModelProvider(this@MainActivity, factory)
             .get(MainViewModel::class.java)
 
