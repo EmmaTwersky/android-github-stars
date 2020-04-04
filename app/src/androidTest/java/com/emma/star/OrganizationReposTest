@@ -68,6 +68,7 @@ class OrganizationReposTest {
             .atPosition(0)
             .perform(click())
 
+        // Navigate back to app
         Espresso.pressBack()
 
         // Check that we navigate back to a full recycler view
