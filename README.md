@@ -15,4 +15,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Running the tests
 
-1. Run tests in ./app/src/test and ./app/src/androidTest in Android Studio
+Unit Tests
+Run the individual files from within Android Studio or
+`./gradlew test`
+![](unit_tests.png)
+
+Instrumentation Tests
+`adb shell am instrument -w -r -e package com.emma.star -e debug false com.emma.star.test/androidx.test.runner.AndroidJUnitRunner`
+![](UI_tests.png)

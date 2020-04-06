@@ -2,7 +2,6 @@ package com.emma.star
 
 import android.content.Context
 import android.os.Bundle
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -53,13 +52,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.repos.observe(this, Observer {
             repoViewAdapter = RepoAdapter(it)
             repoRecyclerView.adapter = repoViewAdapter
-        })
-
-        viewModel.searchStatus.observe(this, Observer {
-            when (it) {
-                true -> binding.progressBar.visibility = View.VISIBLE
-                false -> binding.progressBar.visibility = View.GONE
-            }
         })
     }
 

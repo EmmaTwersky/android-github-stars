@@ -78,4 +78,5 @@ dependencies {
     androidTestImplementation "androidx.test:rules:$rules_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_core_version"
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
 }

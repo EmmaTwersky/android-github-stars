@@ -4,7 +4,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.emma.star.network.GithubService
 import com.emma.star.network.RepoRepositoryImpl
 import okhttp3.mockwebserver.MockWebServer
-import org.hamcrest.CoreMatchers.notNullValue
 import org.hamcrest.CoreMatchers.nullValue
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
@@ -49,6 +48,5 @@ class MainViewModelTest {
     @Test
     fun `test instance variables`() {
         assertThat(viewModel.repos.value, nullValue())
-        assertThat(viewModel.searchStatus, notNullValue())
     }
 }

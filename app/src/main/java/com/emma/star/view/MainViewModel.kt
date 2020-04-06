@@ -16,13 +16,7 @@ class MainViewModel(private val repoRepository: RepoRepository) : ViewModel() {
     val repos: LiveData<ArrayList<Repo?>>
         get() = _repos
 
-    private val _searchStatus = MutableLiveData<Boolean>()
-    val searchStatus: LiveData<Boolean>
-        get() = _searchStatus
-
     fun searchRepos(organization: String) {
-        _searchStatus.value = true
-
         viewModelScope.launch {
             try {
                 _repos.value?.clear()
@@ -32,7 +26,6 @@ class MainViewModel(private val repoRepository: RepoRepository) : ViewModel() {
                 Log.e("MainViewModel", "Exception: ", e)
             }
         }
-        _searchStatus.value = false
     }
 
     private fun handleReposSorting(searchResults: ArrayList<Repo?>) {
