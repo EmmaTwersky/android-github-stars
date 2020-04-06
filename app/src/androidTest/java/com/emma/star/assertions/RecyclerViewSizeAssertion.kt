@@ -13,8 +13,8 @@ class RecyclerViewItemCountAssertion(private val expectedCount: Int) : ViewAsser
             throw noViewFoundException
         }
         val recyclerView = view as RecyclerView
-        val adapter = recyclerView.adapter
-        assertThat(adapter!!.itemCount, `is`(expectedCount))
+        val adapterItemCount = recyclerView.adapter!!.itemCount
+        assertThat(adapterItemCount, `is`(expectedCount))
     }
 
 }

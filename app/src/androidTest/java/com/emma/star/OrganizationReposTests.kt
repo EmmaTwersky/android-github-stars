@@ -1,10 +1,12 @@
 package com.emma.star
 
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
@@ -63,16 +65,9 @@ class OrganizationReposTest {
         onView(withId(R.id.search_button)).perform(click())
 
         // Navigate to Chrome tab
-        onData(anything())
-            .inAdapterView(withId(R.id.repos_recycler_view))
-            .atPosition(0)
-            .perform(click())
-
-        // Navigate back to app
-        Espresso.pressBack()
-
-        // Check that we navigate back to a full recycler view
         onView(withId(R.id.repos_recycler_view)).check(RecyclerViewItemCountAssertion(30))
+        onView(withId(R.id.repos_recycler_view))
+            .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()));
     }
 
     @Test
