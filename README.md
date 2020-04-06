@@ -15,8 +15,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Running the tests
 
-###Unit Tests
-
 ### Unit Tests  
   
 Run the individual files from within Android Studio or  
